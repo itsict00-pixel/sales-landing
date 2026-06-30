@@ -1,0 +1,13 @@
+# Dipendenze (quando passeremo a Node/Astro)
+node_modules/
+dist/
+.astro/
+
+# Sistema
+.DS_Store
+*.log
+
+# Ambiente
+.env
+.env.*
+!.env.example
