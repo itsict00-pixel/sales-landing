@@ -12,10 +12,23 @@ cd "sales-landing" && python3 -m http.server 4321
 # poi apri http://localhost:4321
 ```
 
-## Struttura
+## Struttura (modulare a blocchi)
 ```
 sales-landing/
-├── index.html          # struttura sezioni della sales page (Hero→…→CTA)
+├── layout.html         # scheletro pagina (head/body) coi segnaposto @@HEADER@@ @@BLOCKS@@ @@FOOTER@@
+├── blocks/             # i pezzi del sito SENZA wrapper di pagina
+│   ├── header.html     #   chrome fisso (nav)
+│   ├── 10-hero.html    #   ↓ flusso principale, numerato a passo 10
+│   ├── 20-problema.html
+│   ├── 30-come-funziona.html
+│   ├── 40-benefici.html
+│   ├── 50-testimonianze.html
+│   ├── 60-offerta.html
+│   ├── 70-faq.html
+│   ├── 80-cta-finale.html
+│   └── footer.html     #   chrome fisso
+├── build.py            # ricuce layout + blocks → index.html  (python3 build.py)
+├── index.html          # GENERATO — non modificare a mano
 ├── css/
 │   ├── tokens.css      # design token (FASE 4) — palette, font, spacing
 │   └── styles.css      # stili e componenti (basati sui token)
@@ -24,6 +37,17 @@ sales-landing/
 ├── copy/               # i testi reali, sezione per sezione (FASE 3)
 └── docs/               # brief, strategia, direzione visiva (FASI 0-2)
 ```
+
+## ✏️ Modificare il sito (workflow)
+1. Apri il blocco giusto in `blocks/` e modificalo (è solo l'HTML della sezione, niente wrapper).
+2. Rilancia la build: `python3 build.py`
+3. Ricarica il browser.
+
+## ➕ Aggiungere un WIDGET tra due blocchi
+I blocchi sono numerati a passo 10 → c'è sempre spazio per infilarne uno in mezzo.
+- Widget **tra Benefici (40) e Testimonianze (50)**? Crea `blocks/45-mio-widget.html`
+  con dentro solo l'HTML del widget (un `<section>…</section>` o un embed), poi `python3 build.py`.
+- Per **riordinare** i blocchi: rinomina i prefissi numerici.
 
 ## Pipeline (stato)
 - [ ] **Fase 0** — Brief & posizionamento → `docs/brief.md`  ·  `/wearemarketers-posizionamento`, `/deep-research`

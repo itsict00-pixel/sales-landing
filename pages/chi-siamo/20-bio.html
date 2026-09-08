@@ -1,0 +1,25 @@
+<!-- CHI SIAMO — Foto + copy (scroll 2/3): foto a SINISTRA, copy a DESTRA.
+     La foto è la stessa dell'home: assets/volto-professionista.jpg (fallback silhouette se manca).
+     Il copy a destra è tutto segnaposto: lo scrivi tu in fase copy. -->
+<section class="section section--alt about-bio">
+  <div class="container about-bio__grid">
+    <figure class="about-bio__photo">
+      <img src="assets/volto-professionista.jpg" alt="[Foto del professionista]"
+           width="320" height="320" decoding="async"
+           onerror="var f=this.closest('.about-bio__photo'); if(f){f.classList.add('is-empty');} this.remove();" />
+      <svg class="about-bio__ph" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2.2c-4.2 0-8 2.1-8 6.3V22h16v-1.5c0-4.2-3.8-6.3-8-6.3Z"/>
+      </svg>
+    </figure>
+    <div class="about-bio__copy">
+      <h2 class="section__title">[TITOLO del blocco: es. La mia storia]</h2>
+      <p>[COPY paragrafo 1 — inserisci qui il testo]</p>
+      <p>[COPY paragrafo 2 — inserisci qui il testo]</p>
+      <ul class="about-bio__points">
+        <li>[Punto / risultato 1]</li>
+        <li>[Punto / risultato 2]</li>
+        <li>[Punto / risultato 3]</li>
+      </ul>
+    </div>
+  </div>
+</section>

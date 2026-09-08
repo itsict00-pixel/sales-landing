@@ -1,11 +1,10 @@
 /* ============================================================
    DESIGN TOKENS — FASE 4 (/design-system + /ui-ux-pro-max)
-   Questi sono valori segnaposto SENSATI e accessibili.
-   In Fase 2/4 li sostituiamo con la palette e i font reali del brand.
-   Architettura: usa SEMPRE i token semantici (--color-text, --color-primary…)
-   nei componenti, mai gli hex grezzi.
+   Definiti sotto .sl (classe-radice) così il bundle è incollabile in GoHighLevel
+   senza toccare le variabili globali della piattaforma.
+   Usa SEMPRE i token semantici (--color-text, --color-primary…) nei componenti.
    ============================================================ */
-:root {
+.sl {
   /* --- Colore: primitivi --- */
   --c-ink-900: #0f172a;
   --c-ink-600: #475569;
@@ -13,9 +12,13 @@
   --c-paper:   #ffffff;
   --c-paper-2: #f8fafc;
   --c-line:    #e2e8f0;
-  --c-brand-600: #1d4ed8;   /* FASE 2: → colore brand reale */
-  --c-brand-700: #1e40af;
-  --c-brand-50:  #eff6ff;
+  /* FASE 2 — Verde "banconota €100": profondo, leggermente muto (NON mint/neon/teal).
+     Bianco/off-white resta la superficie dominante; il verde è brand/accento. */
+  --c-brand-400: #35a06c;   /* midtone: campo di punti WebGL + glow del gradiente */
+  --c-brand-500: #1f8455;   /* accento chiaro */
+  --c-brand-600: #146b43;   /* PRIMARY — CTA, link, accenti (bianco su verde = AA) */
+  --c-brand-700: #0e4f31;   /* hover — più scuro */
+  --c-brand-50:  #e8f4ed;   /* tinta soft — superfici tenui */
 
   /* --- Colore: semantici (usa QUESTI) --- */
   --color-bg:             var(--c-paper);
@@ -28,7 +31,7 @@
   --color-border:         var(--c-line);
   --color-accent-soft:    var(--c-brand-50);
 
-  /* --- Tipografia --- FASE 2: sostituire con il font pairing scelto */
+  /* --- Tipografia --- FASE 2: sostituire col font pairing scelto */
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-display: var(--font-sans);
   --text-base: 1rem;        /* 16px minimo per il body (regola a11y) */
@@ -36,7 +39,7 @@
   --text-lg:   1.125rem;
   --text-xl:   1.5rem;
   --text-2xl:  2rem;
-  --text-3xl:  2.75rem;     /* hero su desktop */
+  --text-3xl:  2.75rem;
   --leading:   1.6;
 
   /* --- Spaziatura (scala 4px) --- */
@@ -51,5 +54,5 @@
 
   /* --- Layout --- */
   --container: 1080px;
-  --tap-min:   44px;   /* target tattile minimo (a11y) */
+  --tap-min:   44px;
 }

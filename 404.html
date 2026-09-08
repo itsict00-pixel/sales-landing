@@ -1,0 +1,133 @@
+<!-- ============================================================
+     FILE GENERATO da build.py — NON modificare a mano.
+     Modifica i file in blocks/ (o layout.html) e rilancia: python3 build.py
+     ============================================================ -->
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- FASE 3 (/copywriting-ai) + FASE 7 (SEO): title e description col copy reale -->
+  <title>[BRAND] — 404</title>
+  <meta name="description" content="[Sottotitolo SEO: cosa fai, per chi, qual è il beneficio. 150-160 caratteri.]" />
+
+  <!-- FASE 8 (/banner-design): Open Graph -->
+  <meta property="og:title" content="[BRAND] — [promessa]" />
+  <meta property="og:description" content="[beneficio]" />
+  <meta property="og:image" content="/assets/og-image.png" />
+  <meta property="og:type" content="website" />
+
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <meta name="robots" content="noindex, nofollow" /></head>
+<body>
+  <a class="skip-link" href="#main">Salta al contenuto</a>
+
+  <div class="sl">
+<!-- HEADER (chrome) — nav del SITO: logo + menu (Home · Chi siamo) accanto alla CTA.
+     Condiviso su tutte le pagine (build.py lo monta su index.html e su ogni pagina in pages/).
+     Su mobile i link collassano in un menu a tendina (bottone hamburger). Script inline = autonomo anche in GHL. -->
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html" aria-label="[BRAND] — home">
+      <!-- Volto del professionista (mini). Stesso file dell'hero: assets/volto-professionista.jpg -->
+      <span class="brand__avatar" aria-hidden="true">
+        <img src="assets/volto-professionista.jpg" alt="" width="32" height="32" decoding="async"
+             onerror="var b=this.closest('.brand__avatar'); if(b){b.classList.add('is-empty');} this.remove();" />
+        <svg class="brand__avatar-ph" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2.2c-4.2 0-8 2.1-8 6.3V22h16v-1.5c0-4.2-3.8-6.3-8-6.3Z"/>
+        </svg>
+      </span>
+      <span class="brand__name">[BRAND]</span>
+    </a>
+
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Apri il menu">
+      <span class="nav__toggle-bar" aria-hidden="true"></span>
+      <span class="nav__toggle-bar" aria-hidden="true"></span>
+      <span class="nav__toggle-bar" aria-hidden="true"></span>
+    </button>
+
+    <nav class="site-nav" id="site-menu" aria-label="Navigazione principale">
+      <a class="site-nav__link" href="index.html">Home</a>
+      <a class="site-nav__link" href="chi-siamo.html">Chi siamo</a>
+      <a class="site-nav__link" href="blog.html">Blog</a>
+      <a class="btn btn--primary btn--sm" href="index.html#offerta">[CTA: es. Prenota una call]</a>
+    </nav>
+  </div>
+
+  <script>
+  (function () {
+    var header = (document.currentScript && document.currentScript.closest('.site-header'))
+               || document.querySelector('.sl .site-header') || document.querySelector('.site-header');
+    if (!header || header.dataset.navInit) return;
+    header.dataset.navInit = '1';
+    var btn = header.querySelector('.nav__toggle');
+    var menu = header.querySelector('#site-menu') || header.querySelector('.site-nav');
+    if (!btn || !menu) return;
+
+    function open(){ menu.classList.add('is-open'); btn.setAttribute('aria-expanded','true'); btn.setAttribute('aria-label','Chiudi il menu'); }
+    function close(){ menu.classList.remove('is-open'); btn.setAttribute('aria-expanded','false'); btn.setAttribute('aria-label','Apri il menu'); }
+    function toggle(){ btn.getAttribute('aria-expanded') === 'true' ? close() : open(); }
+
+    btn.addEventListener('click', function(e){ e.stopPropagation(); toggle(); });
+    // chiudi cliccando fuori, con ESC, o dopo aver scelto una voce
+    document.addEventListener('click', function(e){ if (menu.classList.contains('is-open') && !header.contains(e.target)) close(); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+    menu.addEventListener('click', function(e){ if (e.target.closest('a')) close(); });
+    // se si torna a desktop, azzera lo stato mobile
+    window.addEventListener('resize', function(){ if (window.innerWidth >= 760) close(); });
+
+    // Nielsen #1 — segna la voce di menu della pagina corrente
+    var here = location.pathname.split('/').pop() || 'index.html';
+    menu.querySelectorAll('.site-nav__link').forEach(function (a) {
+      var target = (a.getAttribute('href') || '').split('#')[0].split('/').pop() || 'index.html';
+      if (target === here) a.setAttribute('aria-current', 'page');
+    });
+
+    // link a un'ancora della pagina CORRENTE → scroll fluido invece di ricaricare (#7)
+    header.querySelectorAll('a[href*="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var href = a.getAttribute('href') || '';
+        var hash = href.slice(href.indexOf('#'));
+        if (hash.length < 2) return;
+        var path = href.split('#')[0].split('/').pop() || 'index.html';
+        if (path !== here) return;               // pagina diversa → navigazione normale
+        var el = document.querySelector(hash);
+        if (!el) return;
+        e.preventDefault();
+        var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        el.scrollIntoView({ behavior: rm ? 'auto' : 'smooth', block: 'start' });
+        close();
+      });
+    });
+  })();
+  </script>
+</header>
+  <main id="main">
+    <!-- 404 — pagina non trovata (Nielsen #9 recupero errori, #3 controllo/libertà) -->
+    <section class="section about-intro">
+      <div class="container about-intro__inner">
+        <p class="eyebrow">Errore 404</p>
+        <h1 class="section__title">Pagina non trovata</h1>
+        <p class="about-lead">La pagina che cerchi non esiste o è stata spostata.</p>
+        <p><a class="btn btn--primary btn--lg" href="index.html">Torna alla home</a></p>
+      </div>
+    </section>
+  </main>
+<!-- FOOTER (chrome) — link legali, niente distrazioni -->
+<footer class="site-footer">
+  <div class="container footer__inner">
+    <p>© <span id="year"></span> [BRAND]</p>
+    <nav aria-label="Legale">
+      <a href="privacy.html">Privacy</a>
+      <a href="termini.html">Termini</a>
+      <a href="mailto:[email]">Contatti</a>
+    </nav>
+  </div>
+</footer>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

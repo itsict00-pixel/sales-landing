@@ -7,6 +7,10 @@ dist/
 .DS_Store
 *.log
 
+# Artefatti generati dalla build (ricreati da build.py / CI)
+/deploy/
+*.zip
+
 # Ambiente
 .env
 .env.*
